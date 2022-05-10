@@ -1,0 +1,24 @@
+{
+  "name": "week4assignment",
+  "version": "1.0.0",
+  "description": "assignment_apireqres",
+  "main": "index.js",
+  "repository": "https://github.com/Rasaant/week4.git",
+  "author": "hyunw9 <rkdgusdnr32@naver.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.1"
+    
+  },
+  "scripts": {
+    "start": "nodemon",
+    "start:dev": "nodemon --watch src/index.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/node": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "nodemon": "^2.0.16"
+  },
+  "type" : "module"
+}

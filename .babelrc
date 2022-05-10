@@ -1,0 +1,4 @@
+//.babelrc
+{
+    "presents": ["@babel/preset-env"]
+}
