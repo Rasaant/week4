@@ -57,13 +57,13 @@ router.get("/api/posts",(req,res)=>{
     
 });
 router.get("/api/posts/:postId",(req,res)=>{
-    const index = writes.findIndex(writes =>writes.id ===req.body.id);
+    const index = writes.findIndex(writes =>writes.id ===parseInt(req.params.postId));
     if( index === -1){
         return res.json({
             error: "That data doesn't exist",
         });
     }
-    res.json(writes.filter(writes=>writes.id === req.body.id)[0]);
+    res.json(writes.filter(writes=>writes.id === parseInt(req.params.postId))[0]);
 })
 //get
 
@@ -120,7 +120,7 @@ else{
 
 router.post("/api/auth/register", (req,res) =>{
     const index = (userData.findIndex(userData=>userData.user === req.body.email)) ;
-    console.log(index);
+    
 if(index>=0){
     res.json({
         "error": "User already exist"
@@ -144,8 +144,8 @@ else{
 
 //post
 router.put("/api/posts/:postId",(req,res)=>{
-    
-    const index = writes.findIndex(writes=> writes.id === parseInt(req.get('X-User-Id')));
+    const parameter = parseInt(req.params.postId);
+    const index = writes.findIndex(writes=> writes.id === parameter);
     console.log(index);
     if(req.get('X-User-Id') === '1'){
     if( index === -1){
@@ -172,9 +172,10 @@ router.put("/api/posts/:postId",(req,res)=>{
 });
 //put
 router.delete("/api/posts/:postId",(req,res)=>{
+    const parameter = parseInt(req.params.postId)
     if(req.get('X-User-Id')== '1'){
     
-    writes.splice(writes.findIndex(write=>write.id === parseInt(req.get('X-User-Id'))),1);
+    writes.splice(writes.findIndex(write=>write.id === parameter),1);
     res.json(writes);
     
     }else{
