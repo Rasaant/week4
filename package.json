@@ -7,18 +7,22 @@
   "author": "hyunw9 <rkdgusdnr32@naver.com>",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.1"
-    
+    "babel": "^6.23.0",
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.20.0",
+    "sequelize-cli": "^6.4.1"
   },
   "scripts": {
     "start": "nodemon",
-    "start:dev": "nodemon --watch src/index.js"
+    "start:dev": "nodemon --watch src/index.js",
+    "dev": "nodemon src/index.js --exec babel-node"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.10",
+    "@babel/core": "^7.18.0",
     "@babel/node": "^7.17.10",
-    "@babel/preset-env": "^7.17.10",
+    "@babel/preset-env": "^7.18.0",
     "nodemon": "^2.0.16"
-  },
-  "type" : "module"
+  }
+  
 }
