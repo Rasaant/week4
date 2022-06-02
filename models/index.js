@@ -1,6 +1,6 @@
 const Sequelize= require("sequelize");
 const User = require("./User");
-const write = require("./write"); 
+const Write = require("./write"); 
 
 const env = process.env.NODE_ENV || "development";
 const config = require("../config/config")[env];
@@ -14,13 +14,13 @@ const sequelize = new Sequelize( //config의 db정보와 연결
 );
 
 db.sequelize = sequelize;
-db.write = write;
+db.Write = Write;
 db.User = User;
 
 
-write.init(sequelize);
+Write.init(sequelize);
 User.init(sequelize);
-write.associate(db);
+Write.associate(db);
 User.associate(db);
 
 module.exports = db;

@@ -4,11 +4,11 @@ module.exports = class User extends Sequelize.Model{
     static init(sequelize){
         return super.init({
             pw:{
-              type: Sequelize.STRING(16),
+              type: Sequelize.TEXT,
                 allowNull: false,
             },
             data:{
-                type:Sequelize.STRING(30),
+                type:Sequelize.TEXT,
                 allowNull:true,
             },
             userId:{
@@ -27,6 +27,6 @@ module.exports = class User extends Sequelize.Model{
 
     }
     static associate(db){
-        db.User.hasOne(db.write, {foreignKey:"user_id", sourceKey: "id"});        
+        db.User.hasOne(db.Write, {foreignKey:"user_id", sourceKey: "id"});        
     };
 }

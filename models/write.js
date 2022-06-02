@@ -1,16 +1,15 @@
 const Sequelize  = require("sequelize");
-
 module.exports = class write extends Sequelize.Model{
    static init(sequelize){
        return super.init({
         
            content:{
-               type: Sequelize.STRING,
+               type: Sequelize.TEXT,
                allowNull: false,
            },
            writer:{
                type: Sequelize.STRING(10),
-               allowNull: true,
+               allowNull: false,
            }
            
        },{
@@ -26,6 +25,6 @@ module.exports = class write extends Sequelize.Model{
    }
    
    static associate(db){
-    db.write.belongsTo(db.User, {foreignKey:"user_id", sourceKey: "id"});
+    db.Write.belongsTo(db.User, {foreignKey:"user_id", sourceKey: "id"});
    };
 };

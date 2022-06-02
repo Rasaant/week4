@@ -1,0 +1,70 @@
+authrouter.post("/login",async(req,res,next) =>{
+    try{
+        const user = await User.findOne({ where: { userId: req.body.email } });            
+        if(!user){
+            return res.status(404).json({
+                error:{
+                    message: "User not exist",
+                },
+            });
+        }
+        if(user.pw !== req.body.password){
+            return res.status(404).json({
+                error:{
+                    message: "incorrect password",
+                }
+            })
+        }
+        return res.json({
+            data: {
+                user:{
+                    id: user.id
+                }
+            }
+        });
+    }catch(err){
+            console.error(err);
+            next(err);
+        }
+        });
+
+
+///
+
+authrouter.post("/register",async(req,res,next)=>{
+try{
+    const count = await User.findAll({
+        raw:true,
+        attributes:['id'],
+    });            
+    let user = await User.findOne({ where: { userId: req.body.email } });
+    
+    if(!user){
+        User.create({                           //생성
+            userId: req.body.email,
+            pw: req.body.password,
+            data: "default",
+        });
+    }
+    else{
+        return res.json({
+            error: "user already exist",
+        })
+    }
+    const lastrow = await User.findOne({where:{id:count.length}}); //마지막으로 추가한 행 불러오는 변수
+    console.log(lastrow);
+
+    return res.json({
+        data:lastrow.data,
+        user:lastrow.userId,
+        id:lastrow.id,
+     });
+     
+}catch(err){
+    console.error(err);
+    next(err);
+}
+});  
+
+
+
