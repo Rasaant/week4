@@ -27,7 +27,7 @@ const port = 3306;
 
 //미들웨어를 이용한 방식
 app.use(cors({
-  origin: 'http://localhost:3000/api/posts', // 출처 허용 옵션
+  origin: 'http://localhost:3000', // 출처 허용 옵션
   credential: 'true' // 사용자 인증이 필요한 리소스(쿠키 ..등) 접근
 }));
 app.get('/test1', (req, res) => {
