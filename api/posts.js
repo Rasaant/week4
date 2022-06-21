@@ -18,6 +18,9 @@ postrouter.get("/",async(req,res,next)=>{
    return res.send(isContent);
 
 });
+postrouter.get("/get",async(req,res)=>{
+    res.send("good");
+})
 postrouter.get("/:postId",async (req,res,next)=>{
     try{
         const parameter = parseInt(req.params.postId);
